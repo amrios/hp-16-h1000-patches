@@ -1,0 +1,12 @@
+diff -ur /usr/src/linux-source-6.3/sound/pci/hda/patch_realtek.c linux-source-6.3/sound/pci/hda/patch_realtek.c
+--- /usr/src/linux-source-6.3/sound/pci/hda/patch_realtek.c	2023-07-01 07:14:48.000000000 -0400
++++ linux-source-6.3/sound/pci/hda/patch_realtek.c	2023-07-26 16:12:33.398775232 -0400
+@@ -9504,6 +9504,8 @@
+ 	SND_PCI_QUIRK(0x103c, 0x8b92, "HP", ALC245_FIXUP_CS35L41_SPI_2_HP_GPIO_LED),
+ 	SND_PCI_QUIRK(0x103c, 0x8b96, "HP", ALC236_FIXUP_HP_MUTE_LED_MICMUTE_VREF),
+ 	SND_PCI_QUIRK(0x103c, 0x8b97, "HP", ALC236_FIXUP_HP_MUTE_LED_MICMUTE_VREF),
++        SND_PCI_QUIRK(0x103d, 0x8be5, "HP ENVY Laptop 16-h1xxx", ALC287_FIXUP_CS35L41_I2C_2_HP_GPIO_LED),
++        SND_PCI_QUIRK(0x103c, 0x8be5, "HP ENVY Laptop 16-h1xxx", ALC287_FIXUP_CS35L41_I2C_2),
+ 	SND_PCI_QUIRK(0x103c, 0x8bf0, "HP", ALC236_FIXUP_HP_GPIO_LED),
+ 	SND_PCI_QUIRK(0x103c, 0x8c26, "HP HP EliteBook 800G11", ALC245_FIXUP_CS35L41_SPI_2_HP_GPIO_LED),
+ 	SND_PCI_QUIRK(0x1043, 0x103e, "ASUS X540SA", ALC256_FIXUP_ASUS_MIC),
