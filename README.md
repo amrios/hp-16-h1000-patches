@@ -1,12 +1,12 @@
 # HP Envy 16-H1000 Linux Patches
 
-Patches for [HP Envy 16-H1000](https://support.hp.com/us-en/product/hp-envy-16-inch-laptop-pc-16-h1000/2101525785) (tested specifically on: HP 16-H1023DX) to fixup the internal speakers on Linux.
+Patches for [HP Envy 16-H1000](https://support.hp.com/us-en/product/hp-envy-16-inch-laptop-pc-16-h1000/2101525785) (tested specifically on: HP 16-H1023DX) to fix the internal speakers on Linux.
 
 ## The Issue
 
-The laptop features an internal amplifier+DSP ([Cirrus CS35L41](https://www.cirrus.com/products/cs35l41/)) to drive the speakers. However, the driver from the OEM have hardcoded the mappings of this amp into the vendor-specific Windows driver rather than using ACPI. Additionally, these vendor-specific drivers provide tuning in the form a binary blob specific for the hardware, however it is possible to use a generic tune to provide sound. 
+The laptop features an internal amplifier+DSP ([Cirrus CS35L41](https://www.cirrus.com/products/cs35l41/)) to drive the speakers. However, the driver from the OEM have hardcoded the mappings of this amp into the OEM-specific Windows driver. Additionally, these vendor-specific drivers provide tuning in the form a binary blob specific for the hardware, however it is possible to use a generic tune to provide sound. 
 
-Linux supports this amp, however it relies on the ACPI tables to provide the mappings need to intialize the device. This creates an issue, where the driver will refuse to initialize the amp since it expects to find this information through ACPI.
+Linux supports this amp, however it relies on the ACPI tables to provide the mappings needed to intialize the device; the driver will refuse to initialize the amp since this information is missing from the tables.
 
 ## The Fix
 
@@ -17,11 +17,11 @@ Linux supports this amp, however it relies on the ACPI tables to provide the map
 ## Issues
 
 * Audio "isn't as loud" when compared to Windows. This fix will load the generic tune, so it might be that. Need to look into the OEM driver more.
-* May need `sof-firmware` package to work.
+* May need `sof-firmware` package.
 * Microphone mute on keyboard not working.
 * Need to disable Secure Boot to apply SSDT patch due to Kernel Lockdown.
 
 ## Related Works
 
-* https://www.spinics.net/lists/alsa-devel/msg162072.html - Alternative approach, allows for secure boot via MOK
+* https://www.spinics.net/lists/alsa-devel/msg162072.html - Alternative approach, allows for MOK Secure Boot
 * https://bugzilla.kernel.org/show_bug.cgi?id=216194#c29 - Cirrus
